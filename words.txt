@@ -6636,7 +6636,6 @@ howfs
 howks
 howls
 howso
-hsien
 hsuan
 huaca
 huaco
@@ -12443,7 +12442,6 @@ shice
 shick
 shide
 shied
-shiel
 shier
 shyer
 shies
@@ -12733,7 +12731,6 @@ skidi
 skids
 skied
 skyed
-skiey
 skyey
 skier
 skies
