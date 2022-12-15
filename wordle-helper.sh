@@ -79,10 +79,26 @@ if [ -n "$EXCLUDES" ]; then
 fi
 
 for hint in ${HINTS[@]}; do
-    CMD+=" | grep -v $hint"
-    letter=$(sed 's/\.//g' <<< "$hint")
-    CMD+=" | grep $letter"
+    for i in $(seq 5); do
+        letter=$(echo "$hint" | head -c $i | tail -c 1)
+        if [[ "$letter" != "." ]]; then
+            #echo "i: $i"
+            #echo "letter: $letter"
+            filter=""
+            for j in $(seq 1 $((i-1))); do
+                filter+="."
+            done
+            filter+="$letter"
+            for j in $(seq $i 4); do
+                filter+="."
+            done
+            #echo "filter: $filter"
+
+            CMD+=" | grep -v $filter"
+            CMD+=" | grep $letter"
+        fi
+    done
 done
 
-#echo "$CMD"
+echo "$CMD"
 eval "$CMD"
