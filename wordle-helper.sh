@@ -3,6 +3,8 @@
 # -h, --hint "....."    A string of len 5. Corresponds to a yellow letter hint, where the letter is in the solution at a different posistion. Four characters must be ".", and the fifth character must be a letter at the position where the game gave us a yellow square.
 # -e, --exclude         A list of letters that are known not to be in the solution. Default is empty.
 
+declare SCRIPT_DIR=$(dirname ${BASH_SOURCE[0]})
+declare WORDS_FILE="$SCRIPT_DIR/words.txt"
 declare SOLN="....."
 declare EXCLUDES=""
 declare -a HINTS=()
@@ -72,7 +74,7 @@ for hint in ${HINTS[@]}; do
     fi
 done
 
-CMD="grep $SOLN words.txt"
+CMD="grep $SOLN $WORDS_FILE"
 
 if [ -n "$EXCLUDES" ]; then
     CMD+=" | grep -v \"[$EXCLUDES]\""
